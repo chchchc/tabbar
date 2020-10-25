@@ -6,6 +6,8 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+Vue.prototype.$bus = new Vue()  //事件总线
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -1,6 +1,6 @@
 <template>
   <div class="goods-item">
-    <img :src="goodsItem.show.img" alt="">
+    <img :src="goodsItem.show.img" alt="" @load="imgLoad">
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
@@ -23,6 +23,13 @@ export default {
       default(){
         return {}
       }
+    }
+  },
+  methods:{
+    //监听图片加载完毕
+    imgLoad(){  //在这里准备发射'事件总线'出去，直接给到home组件，然后home组件拿到scroll组件对象
+      // console.log('*******', );
+      this.$bus.$emit('itemImgLoad')
     }
   }
 }
