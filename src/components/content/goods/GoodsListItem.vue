@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-item">
+  <div class="goods-item" @click="itemClick">
     <img :src="goodsItem.show.img" alt="" @load="imgLoad">
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
@@ -30,6 +30,9 @@ export default {
     imgLoad(){  //在这里准备发射'事件总线'出去，直接给到home组件，然后home组件拿到scroll组件对象
       // console.log('*******', );
       this.$bus.$emit('itemImgLoad')
+    },
+    itemClick(){
+      this.$router.push('/detail/'+this.goodsItem.iid)
     }
   }
 }

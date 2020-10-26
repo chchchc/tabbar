@@ -70,7 +70,8 @@ export default {
       currentType: "pop",
       isShowBackTop: false,
       tabOffsetTop: 0,
-      isTabFixed:false
+      isTabFixed:false,
+      saveY:0,
     };
   },
   components: {
@@ -106,6 +107,20 @@ export default {
   },
   destroyed(){
     console.log('home --destroyed')
+  },
+  //当前活跃时
+  activated(){
+    console.log('actived')
+    //home保持当前位置状态
+    this.$refs.scroll.scrollToTo(0,this.saveY,0)
+    //最好刷新一下 以防跳转回去不能滚动
+    this.$refs.scroll.refresh()
+  },
+  //离开时
+  deactivated(){
+    console.log('deactived')
+    this.saveY = this.$refs.scroll.getScrollY()
+    console.log('this.saveY',this.saveY)
   },
   methods: {
     /**

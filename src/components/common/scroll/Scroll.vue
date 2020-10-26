@@ -56,12 +56,16 @@ export default {
       this.scroll && this.scroll.scrollTo(x, y, time); //调用better-scroll自身方法
     },
     finishPullUpUp() {
-      console.log('完成上拉加载功能')
+      console.log("完成上拉加载功能");
       this.scroll && this.scroll.finishPullUp(); //调用better-scroll自身方法
     },
     refresh(a, b) {
-      console.log("ggggg",a,b);
+      console.log("刷新事件", a, b);
       this.scroll && this.scroll.refresh();
+    },
+    getScrollY() {
+      console.log('获取当前y轴距离')
+      return this.scroll ? this.scroll.y : 0;
     },
   },
 };
