@@ -1,5 +1,5 @@
 <template>
-  <div class="shop-info">
+  <div class="shop-info" v-if="Object.keys(shop).length !==0">
     <!-- 店铺名 店铺logo-->
     <div class="shop-top">
       <img :src="shop.logo" alt="" />
@@ -46,7 +46,7 @@ export default {
   props: {
     shop: {
       type: Object,
-      default() {
+      default:()=>{
         return {};
       },
     },

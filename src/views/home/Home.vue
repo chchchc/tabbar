@@ -90,6 +90,7 @@ export default {
     },
   },
   created() {
+    // alert('uuuuuuu')
     //请求多个数据
     this.getHomeMultidata();
     //请求商品数据
@@ -118,9 +119,7 @@ export default {
   },
   //离开时
   deactivated(){
-    console.log('deactived')
     this.saveY = this.$refs.scroll.getScrollY()
-    console.log('this.saveY',this.saveY)
   },
   methods: {
     /**
