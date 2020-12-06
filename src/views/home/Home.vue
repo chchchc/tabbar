@@ -54,9 +54,11 @@ import BackTop from "@/components/content/backTop/BackTop";
 
 import { getHomeMultidata, getHomeGoods } from "@/network/home"; //这里用大括号的原因是因为home.js里面导出来的是export  而不是export default
 import { debounce } from "@/common/utils";
+import {itemListenerMixin} from "@/common/mixins"
 
 export default {
   name: "Home",
+  mixins:[itemListenerMixin],
   data() {
     return {
       banners: [],
@@ -99,12 +101,7 @@ export default {
     this.getHomeGoods("sell");
   },
   mounted() {
-    //监听item  img图片加载完成
-    const refresh = debounce(this.$refs.scroll.refresh, 500);
-    this.$bus.$on("itemImgLoad", () => {
-      // console.log("222");
-      refresh(1, 2); //传参数只是示例,没有具体参数
-    });
+    //采用混入了
   },
   destroyed(){
     console.log('home --destroyed')
@@ -119,7 +116,10 @@ export default {
   },
   //离开时
   deactivated(){
+    //1.保存Y值
     this.saveY = this.$refs.scroll.getScrollY()
+    //2.取消全局事件的监听
+    this.$bus.$off('itemImgLoad', this.itemImgListener)
   },
   methods: {
     /**

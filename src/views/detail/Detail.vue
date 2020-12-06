@@ -18,6 +18,7 @@
       <detail-param-info :param-info="paramInfo"></detail-param-info>
       <!-- 图片评论信息-->
       <detail-comment-info :commentInfo="commentInfo"></detail-comment-info>
+      <!--商品推荐数据信息展示 -->
       <goods-list :goods="recommends"></goods-list>
     </scroll>
   </div>
@@ -36,9 +37,12 @@ import Scroll from "@/components/common/scroll/Scroll";
 import GoodsList from "@/components/content/goods/GoodsList"
 
 import { getDetail,getRecommend, Goods, Shop, GoodsParam } from "@/network/detail";
+import { debounce } from "@/common/utils";
+import {itemListenerMixin} from "@/common/mixins"
 
 export default {
   name: "Detail",
+  mixins:[itemListenerMixin],
   data() {
     return {
       iid: null,
@@ -48,7 +52,7 @@ export default {
       detailInfo: {},
       paramInfo:{},
       commentInfo:{},
-      recommends:[]
+      recommends:[],
     };
   },
   components: {
@@ -96,13 +100,18 @@ export default {
       this.recommends = res.data.list
     })
   },
-  mounted() {},
+  mounted() {
+    //采用混入
+  },
   methods: {
     ImageLoad() {
       console.log("图片加载完毕");
       this.$refs.scroll.refresh();
     },
   },
+  destroyed(){
+    this.$bus.$off('itemImgLoad',this.itemImgListener)
+  }
 };
 </script>
 

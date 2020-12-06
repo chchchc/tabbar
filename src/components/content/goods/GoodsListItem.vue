@@ -32,9 +32,19 @@ export default {
   },
   methods:{
     //监听图片加载完毕
-    imgLoad(){  //在这里准备发射'事件总线'出去，直接给到home组件，然后home组件拿到scroll组件对象
+    imgLoad(){  //1.在这里准备发射'事件总线'出去，直接给到home组件，然后home组件拿到scroll组件对象
       // console.log('*******', );
       this.$bus.$emit('itemImgLoad')
+
+      //2.当detail页面引用的时候，图片加载完毕时候，
+      //就需要区分是home的图片需要刷新，还是detail里面图片需要刷新，
+      //所以可以如下使用1.：
+      // if(this.$route.path.indexOf('/home')!==-1){
+      //   this.$bus.$emit('homeItemImgLoad')  //重命名一下home中原本的方法
+      // }else if(this.$route.path.indexOf('/detail')){
+      //   this.$bus.$emit('detailItemImgLoad')
+      // }
+      //还可以另外使用方法 mixins 详见代码
     },
     itemClick(){
       this.$router.push('/detail/'+this.goodsItem.iid)
