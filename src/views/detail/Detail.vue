@@ -12,7 +12,7 @@
       <!-- 商品详细数据-->
       <detail-goods-info
         :detail-info="detailInfo"
-        @imageLoad="ImageLoad"
+        @imageLoad="detailImageLoad"
       ></detail-goods-info>
       <!-- 获取商品参数信息-->
       <detail-param-info :param-info="paramInfo"></detail-param-info>
@@ -104,9 +104,13 @@ export default {
     //采用混入
   },
   methods: {
-    ImageLoad() {
-      console.log("图片加载完毕");
-      this.$refs.scroll.refresh();
+    //监听详情页图片加载完毕
+    detailImageLoad() {
+      // console.log("图片加载完毕");
+      //方法一的
+      // this.$refs.scroll.refresh();
+      //方法二的：
+      this.refresh()  //去拿到mixin里面的定义的refresh方法
     },
   },
   destroyed(){

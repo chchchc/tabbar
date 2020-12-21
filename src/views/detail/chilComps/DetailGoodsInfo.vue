@@ -40,11 +40,14 @@ export default {
     };
   },
   methods: {
-    imgLoad() {
-      //进行判断，如果所有图片都加载完了，那么进行一次回调就可以了
-      if (++this.counter === this.imagesLength) {
-        this.$emit("imageLoad");
-      }
+    //解决有时候详情页滚动不了的问题（因为better-scroll原本给的高度和后面页面中所有图片加载完毕后的高度不一致，导致后面的图片无法展示，就导致页面无法继续滚动）
+    imgLoad() {  //监听到图片加载完成，就开始进行刷新操作
+      //方法一：进行判断，如果所有图片都加载完了，那么进行一次回调就可以了
+      // if (++this.counter === this.imagesLength) {
+      //   this.$emit("imageLoad");
+      // }
+      //方法二：使用debonce防抖
+       this.$emit("imageLoad");
     },
   },
   watch: {
