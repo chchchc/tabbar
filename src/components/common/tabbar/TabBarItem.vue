@@ -32,7 +32,7 @@ export default {
 
   computed: {
     isActive() {
-      // console.log("isActive", this.$route);   //当前单个的路由对象信息
+      console.log("this.$route", this.$route);   //当前单个的路由对象信息
       //判断当前活跃的路由是否等于传进来的path值 如果等于则代表当前path是属于活跃状态
       return this.$route.path.indexOf(this.path) != -1;
     },
@@ -43,8 +43,8 @@ export default {
   },
   methods: {
     itemClick() {
-      // console.log("click点击事件", this.$router);  //this.$router是代表一整个router对象
-      // console.log('this.path',this.path)
+      console.log("click点击事件", this.$router);  //this.$router是代表一整个router对象
+      console.log('this.path',this.path)
       this.$router.replace(this.path); //导航式编程
     },
   },

@@ -47,6 +47,7 @@ export default {
       //   this.$emit("imageLoad");
       // }
       //方法二：使用debonce防抖
+      // console.log('详情页图片加载完毕')
        this.$emit("imageLoad");
     },
   },

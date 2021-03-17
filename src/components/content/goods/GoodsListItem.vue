@@ -1,6 +1,8 @@
 <template>
   <div class="goods-item" @click="itemClick">
-    <img :src="showImages" alt="" @load="imgLoad">
+    <!-- <img :src="showImages" alt="" @load="imgLoad"> -->
+    <!-- 改为使用vue懒加载功能-->
+    <img v-lazy="showImages" alt="" @load="imgLoad">
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>

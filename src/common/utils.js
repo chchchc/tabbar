@@ -2,7 +2,9 @@ import { data } from "autoprefixer"
 
 export function debounce(func,delay){
   let timer = null
-  return function(...agrs){
+  return function(...agrs){   //这种是剩余参数的写法，不是解构 注意区分
+    // console.log('agrs',agrs) //[1,2]
+    // console.log('...args',...agrs)  //1,2
     if( timer) clearTimeout(timer)
     timer = setTimeout(()=>{
       console.log('aaaaa',agrs)

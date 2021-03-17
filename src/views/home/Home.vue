@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav"><div slot="center">购物车</div></nav-bar>
-    <!-- 为了下面的吸顶效果-->
+    <!-- 为了下面的吸顶效果,原本不展示，滑动到一定距离 就展示-->
     <tab-control
         :titles="['流行', '新款', '精选']"
         @tabClick="tabClick"
@@ -116,6 +116,7 @@ export default {
   },
   //离开时
   deactivated(){
+    console.log('deactived')
     //1.保存Y值
     this.saveY = this.$refs.scroll.getScrollY()
     //2.取消全局事件的监听
@@ -146,7 +147,7 @@ export default {
       this.$refs.scroll.scrollToTo(0, 0, 500); //第三个参数代表多少毫秒以内回到顶部
     },
     contentScroll(position) {
-      // console.log('位置',position)
+      // console.log('位置',position.y)
       //判断backtop是否显示
       this.isShowBackTop = -position.y > 1000;
       //决定tabControl是否吸顶（position:fixed）
@@ -160,7 +161,7 @@ export default {
       //获取tabcontrol的offsetTop
       //所有组件都有一个属性$el：用于获取组件的元素
       this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
-      console.log("ewew", this.$refs.tabControl2.$el.offsetTop);
+      console.log("this.$refs.tabControl2.$el.offsetTop", this.$refs.tabControl2.$el.offsetTop);
     },
     /**
      * 网络请求相关方法
