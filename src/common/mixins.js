@@ -13,6 +13,7 @@ export const itemListenerMixin = {
     //对监听事件进行保存
     this.itemImgListener = () => {
       // console.log("222");
+      // console.log('mixins--this',this)   //----this指向的是home组件
       this.refresh(1, 2); //传参数只是示例,没有具体参数
     }
     this.$bus.$on("itemImgLoad", this.itemImgListener);  //方法名，函数

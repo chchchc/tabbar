@@ -60,7 +60,8 @@ export default {
       this.scroll && this.scroll.finishPullUp(); //调用better-scroll自身方法
     },
     refresh(a, b) {
-      console.log("刷新事件", a, b);
+      console.log("刷新事件:", a, b);
+      // console.log('scroll--this',this) //-----指向的是scroll组件
       this.scroll && this.scroll.refresh();
     },
     getScrollY() {

@@ -14,27 +14,36 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "",
-    redirect: "/home"
+    redirect: "/home",
+    meta:{title:'首页'}
   },
   {
     path: "/home",
-    component: Home
+    component: Home,
+    meta:{title:'首页'}
   },
   {
     path: "/category",
-    component: Category
+    component: Category,
+    meta:{title:'分类'},
+    beforeEnter: (to, from, next) => {
+
+    }
   },
   {
     path: "/cart",
-    component: Cart
+    component: Cart,
+    meta:{title:'购物车'}
   },
   {
     path: "/profile",
-    component: Profile
+    component: Profile,
+    meta:{title:'我的'}
   },
   {
     path:"/detail/:iid",
-    component: Detail
+    component: Detail,
+    meta:{title:'商品详情页'}
   }
 ];
 const router = new VueRouter({
@@ -53,5 +62,23 @@ VueRouter.prototype.replace = function replace(to) {
   return VueRouterReplace.call(this, to).catch(err => err);
 };
 
+
+router.beforeEach((to, from, next) => {
+  // if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
+  // else next()
+
+  alert('router.beforeEach')
+  next()
+
+  // if(to.meta.title) {
+  //   document.title = to.meta.title;    //在路由里面写入的meta里面的title字段
+  // }
+  // next();
+})
+router.afterEach((to, from) => {
+  // ViewUI.LoadingBar.finish()  //用来结束loading标识
+  // window.scrollTo(0, 0)   // 跳转到页面顶端
+  // alert('router.afterEach')
+})
 //导出路由
 export default router;
